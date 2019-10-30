@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Emily Talks About Her Lambda School Journey',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet, dolorum accumsan sit ut, solum phaedrum voluptatibus pro cu. Ius regione bonorum percipitur id, et quo suas elitr everti, cu magna phaedrum eum. Quis dicam abhorreant eam id, id qui omnium aperiam, habeo simul sententiae ei usu. Ea ubique constituam pri. Mei voluptaria sadipscing an, nam solum altera sadipscing in. `,
+
+    secondParagraph: `Lorem ipsum dolor sit amet, dolorum accumsan sit ut, solum phaedrum voluptatibus pro cu. Ius regione bonorum percipitur id, et quo suas elitr everti, cu magna phaedrum eum. Quis dicam abhorreant eam id, id qui omnium aperiam, habeo simul sententiae ei usu. Ea ubique constituam pri. Mei voluptaria sadipscing an, nam solum altera sadipscing in.`,
+
+    thirdParagraph: `Lorem ipsum dolor sit amet, dolorum accumsan sit ut, solum phaedrum voluptatibus pro cu. Ius regione bonorum percipitur id, et quo suas elitr everti, cu magna phaedrum eum. Quis dicam abhorreant eam id, id qui omnium aperiam, habeo simul sententiae ei usu. Ea ubique constituam pri. Mei voluptaria sadipscing an, nam solum altera sadipscing in.`
   }
 ];
 
@@ -112,3 +121,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+const articleFill = document.querySelector('.articles');
+data.forEach(data => {
+  articleFill.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph)
+  );
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  //create elements
+  const article = document.createElement('div');
+  const title1 = document.createElement('h2');
+  const date1 = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const buttonSpan = document.createElement('span');
+  //structure elements
+  article.appendChild(title1);
+  article.appendChild(date1);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(buttonSpan);
+  //add classes
+  article.classList.add('article');
+  date1.classList.add('date');
+  buttonSpan.classList.add('expandButton')
+  // set content
+  title1.textContent = title;
+  date1.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  buttonSpan.textContent = "Learn More";
+  // event listeners
+  buttonSpan.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  });
+  return article;
+};
+
+
